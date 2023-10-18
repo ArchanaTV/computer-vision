@@ -1,0 +1,13 @@
+import cv2
+import numpy as np
+tilt = np.pi * 35 / 180
+a = np.zeros((3, 3))
+a[0][0] = 1
+a[1][1] = np.sin(tilt)
+a[1][2] = -np.sin(tilt)
+a[2][2] = np.cos(tilt)
+a[2][2] = np.cos(tilt)
+src = cv2.imread("myself.jpg")
+width, height, depth = src.shape
+output = cv2.warpPerspective(src, a, (width, height))
+cv2.imwrite("results.png", output)
